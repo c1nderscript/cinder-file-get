@@ -21,11 +21,12 @@ cargo build --release
 ## Example usage
 
 ```bash
-finishes init example \
-  --repo owner/repo \
-  --out ~/harvests \
-  --include 'src/**' --exclude 'target/**'
+finishes init
+# follow prompts for repo path, destination, and file types
 ```
+
+Configuration is saved to `~/.config/finishes/config.json` and a `.finishesignore`
+template is written to the chosen repository if absent.
 
 The `codex.sh` script offers dry-run helpers for bootstrap and validation. See [AGENTS.md](AGENTS.md) for detailed concepts and options.
 
