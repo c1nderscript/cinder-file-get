@@ -1,8 +1,8 @@
-use clap::{Parser, Subcommand};
+use clap::{Args, Parser, Subcommand};
 use inquire::{MultiSelect, Text};
-use std::{fs, path::Path};
+use std::{fs, path::Path, process::Command};
 
-use crate::config::Config;
+use crate::{config::Config, copy, ignore, manifest, scan};
 
 #[derive(Debug, Parser)]
 #[command(author, version, about)]
@@ -15,6 +15,8 @@ pub struct Cli {
 enum Commands {
     /// Initialize finishes configuration
     Init,
+    /// Sync files based on saved configuration
+    Sync(SyncArgs),
 }
 
 pub fn run() -> Result<(), Box<dyn std::error::Error>> {
@@ -22,8 +24,63 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
 
     match cli.command {
         Commands::Init => init()?,
+        Commands::Sync(args) => sync(args)?,
     }
 
+    Ok(())
+}
+
+#[derive(Debug, Args)]
+struct SyncArgs {
+    #[arg(long)]
+    dry_run: bool,
+    #[arg(long)]
+    clean: bool,
+    #[arg(long)]
+    force: bool,
+}
+
+fn sync(args: SyncArgs) -> Result<(), Box<dyn std::error::Error>> {
+    let config_dir = dirs::config_dir()
+        .ok_or("unable to determine config directory")?
+        .join("finishes");
+    let config_path = config_dir.join("config.json");
+    let config: Config = serde_json::from_str(&fs::read_to_string(&config_path)?)?;
+
+    if args.clean && config.destination.exists() {
+        if args.dry_run {
+            println!("[dry-run] remove {}", config.destination.display());
+        } else {
+            fs::remove_dir_all(&config.destination)?;
+        }
+    }
+
+    let gitignore = ignore::build(&config.source_repo)?;
+    let files = scan::scan(&config.source_repo, &gitignore)?;
+    let manifest_files = copy::copy_and_hash(
+        &files,
+        &config.source_repo,
+        &config.destination,
+        args.dry_run,
+        args.force,
+    )?;
+    let commit_sha = String::from_utf8(
+        Command::new("git")
+            .arg("-C")
+            .arg(&config.source_repo)
+            .arg("rev-parse")
+            .arg("HEAD")
+            .output()?
+            .stdout,
+    )?
+    .trim()
+    .to_string();
+    manifest::write_manifest(
+        &config.destination,
+        commit_sha,
+        manifest_files,
+        args.dry_run,
+    )?;
     Ok(())
 }
 
