@@ -13,6 +13,9 @@ This repository centers on the `finishes` CLI; the legacy `repo-harvest` crate r
 ```bash
 finishes init
 finishes sync --dry-run
+finishes sync --clean --force
+finishes config --source /path --dest /out --include rs
+finishes doctor
 ```
 
 ### Repo-harvest
@@ -111,6 +114,13 @@ export GITHUB_TOKEN=ghp_your_token_here
 ------
 
 ## 5) CLI Contract
+
+```bash
+finishes init
+finishes sync [--dry-run] [--clean] [--force]
+finishes config [--source <path>] [--dest <path>] [--include <ext>...]
+finishes doctor
+```
 
 ```
 repo-harvest init <profile>

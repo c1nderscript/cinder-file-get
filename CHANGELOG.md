@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-08-17
+### Added
+- `finishes sync` supports `--clean` to wipe the destination and `--force` to overwrite existing files.
+- `finishes config` updates saved paths and include patterns.
+- `finishes sync` writes `export.manifest.json` with commit SHA and file hashes; `finishes doctor` reports new or changed files.
+
 ## [0.4.2] - 2025-08-17
 ### Added
 - Overhauled `README.md` for the `finishes` CLI including install, quick start, configuration, and ignore rules.

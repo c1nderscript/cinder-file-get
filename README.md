@@ -26,6 +26,9 @@ finishes init
 finishes sync --dry-run
 # preview export without writing files
 
+finishes sync --clean --force
+# wipe destination and overwrite existing files
+
 finishes config --source /path/to/repo --dest /tmp/out --include rs --include md
 # update saved paths and include extensions
 
@@ -34,7 +37,7 @@ finishes doctor
 ```
 
 ## Configuration
-Configuration is stored in a JSON file. See [CONFIGURATION.md](CONFIGURATION.md) for per-OS paths.
+Configuration is stored in a JSON file. See [CONFIGURATION.md](CONFIGURATION.md) for per-OS paths. Use `finishes config` to view or update these settings.
 
 ```json
 {
@@ -43,6 +46,9 @@ Configuration is stored in a JSON file. See [CONFIGURATION.md](CONFIGURATION.md)
   "file_types": ["rs", "md"]
 }
 ```
+
+## Manifest
+Each sync writes `export.manifest.json` in the destination directory with the commit SHA and SHA-256 hashes for copied files. `finishes doctor` reads this manifest to report new or changed files.
 
 ## Ignore rules
 
