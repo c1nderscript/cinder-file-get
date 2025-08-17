@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.2] - 2025-08-17
+### Added
+- Overhauled `README.md` for the `finishes` CLI including install, quick start, configuration, and ignore rules.
+- Added `CONFIGURATION.md` and `OPERATIONS.md` guides.
+- Updated `AGENTS.md` and `toaster.md` to reference the `finishes` architecture.
+
 ## [0.4.1] - 2025-08-17
 ### Added
 - Unit tests for path validation, ignore unions, extension filters, and manifest hashing

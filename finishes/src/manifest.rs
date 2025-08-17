@@ -39,9 +39,7 @@ pub fn write_manifest(
     Ok(())
 }
 
-pub fn read_manifest(
-    dest: &Path,
-) -> Result<Option<ExportManifest>, Box<dyn std::error::Error>> {
+pub fn read_manifest(dest: &Path) -> Result<Option<ExportManifest>, Box<dyn std::error::Error>> {
     let path = dest.join("export.manifest.json");
     if !path.exists() {
         return Ok(None);
