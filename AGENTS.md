@@ -1,13 +1,21 @@
-# AGENTS.md — Repo Helper Harvester (Arch • Rust)
+# AGENTS.md — Finishes File Harvester (Arch • Rust)
 
 **Language:** Rust
-**Binary name (suggested):** `repo-harvest`
-**Additional crate:** `finishes`
+**Binary name:** `finishes`
+**Additional crate:** `repo-harvest`
 **Purpose:** Obtain all **relevant files** from a chosen GitHub repository to build a **GPT/Claude helper pack** (code + core docs + configs). Runs simply, then **persists its chosen include/exclude paths as a profile** so subsequent runs can **repopulate and sync to the most recent changes** with one command.
+This repository centers on the `finishes` CLI; the legacy `repo-harvest` crate remains for archival workflows.
 
 ------
 
 ## 0) TL;DR (operator view)
+### Finishes
+```bash
+finishes init
+finishes sync --dry-run
+```
+
+### Repo-harvest
 
 ```bash
 # Arch toolchain

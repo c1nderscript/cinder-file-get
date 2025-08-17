@@ -1,7 +1,12 @@
 use clap::{Args, Parser, Subcommand};
 use inquire::{MultiSelect, Text};
 use sha2::{Digest, Sha256};
-use std::{collections::HashMap, fs, io, path::{Path, PathBuf}, process::Command};
+use std::{
+    collections::HashMap,
+    fs, io,
+    path::{Path, PathBuf},
+    process::Command,
+};
 
 use crate::{config::Config, copy, ignore, manifest, scan};
 

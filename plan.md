@@ -1,10 +1,11 @@
 # Plan
 
 ## Goals
-- Add unit tests for path validation, ignore unions, extension filters, and manifest hashing.
-- Add integration tests using temporary repositories with `venv/`, `target/`, and `node_modules/` directories to ensure they are excluded.
-- Add property tests generating random file trees to confirm no traversal outside the repository and that the size limit is enforced.
-- Bump `finishes` crate version to `0.4.1` and document new tests.
+- Rewrite `README.md` to document the `finishes` CLI, installation steps, quick start, configuration schema, and ignore rules.
+- Create `CONFIGURATION.md` describing per-OS config file locations.
+- Add `OPERATIONS.md` documenting common tasks, dry-run usage, cleaning, and troubleshooting.
+- Update `AGENTS.md` and `toaster.md` to reference the `finishes` CLI and current architecture overview.
+- Bump crate version to `0.4.2` and record documentation updates in `CHANGELOG.md`.
 
 ## Tests
 - `cargo fmt --all --check`
@@ -13,7 +14,7 @@
 - `cargo build --release`
 
 ## SemVer Impact
-- Patch release: `0.4.0` → `0.4.1` (tests only).
+- Patch release: `0.4.1` → `0.4.2` (documentation and metadata only).
 
 ## Rollback Strategy
-- `git revert <commit>` to undo the version bump and test additions.
+- `git revert <commit>` to undo documentation changes and version bump.

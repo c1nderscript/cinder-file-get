@@ -1,28 +1,27 @@
-# cinder-file-get
+# finishes
 
+`finishes` copies selected file types from a local Git repository into a clean export directory with a manifest. It helps create lightweight helper packs for LLM tooling.
 
-`cinder-file-get` retrieves selected files from a GitHub repository to build a lightweight helper pack for LLM tooling.
+## Installation
 
-## Arch Linux setup
+### Arch Linux prerequisites
 
 ```bash
 sudo pacman -S --needed base-devel git rustup
 rustup default stable
 ```
 
-## Build and test
+### Build from source
 
 ```bash
-cd finishes
-cargo test
-cargo build --release
+cargo install --path finishes
 ```
 
-## Example usage
+## Quick start
 
 ```bash
 finishes init
-# follow prompts for repo path, destination, and file types
+# follow prompts for repository path, destination, and file types
 
 finishes sync --dry-run
 # preview export without writing files
@@ -34,11 +33,21 @@ finishes doctor
 # validate configuration and estimate copied files
 ```
 
-Configuration is saved to `~/.config/finishes/config.json` and a `.finishesignore`
-template is written to the chosen repository if absent.
+## Configuration
+Configuration is stored in a JSON file. See [CONFIGURATION.md](CONFIGURATION.md) for per-OS paths.
 
-The `codex.sh` script offers dry-run helpers for bootstrap and validation. See [AGENTS.md](AGENTS.md) for detailed concepts and options.
+```json
+{
+  "source_repo": "/path/to/repo",
+  "destination": "/tmp/out",
+  "file_types": ["rs", "md"]
+}
+```
+
+## Ignore rules
+
+`finishes` honors patterns from both `.gitignore` and `.finishesignore` in the source repository. A `.finishesignore` template is written during `finishes init` if one is missing. Directories such as `venv/`, `target/`, and `node_modules/` are ignored automatically. Use `finishes doctor` to view active rules.
 
 ## Development
-Run repository checks with `./codex.sh fast-validate`. Commands default to a dry-run; pass `--confirm` to execute.
+Run repository checks with `./codex.sh fast-validate`. Commands default to a dry run; pass `--confirm` to execute.
 
