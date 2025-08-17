@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-08-17
+### Added
+- `finishes config` subcommand to display or modify stored values
+- `finishes doctor` subcommand to validate paths and estimate export changes
+
+### Changed
+- Bump `finishes` crate version to 0.4.0
+
 ## [0.3.0] - 2025-08-17
 ### Added
 - Initial `finishes` crate with logging and CLI skeleton

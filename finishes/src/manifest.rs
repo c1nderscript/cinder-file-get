@@ -1,14 +1,14 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::path::Path;
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ManifestFile {
     pub path: String,
     pub bytes: u64,
     pub sha256: String,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ExportManifest {
     pub commit_sha: String,
     pub file_count: usize,
@@ -37,4 +37,16 @@ pub fn write_manifest(
         std::fs::write(path, json)?;
     }
     Ok(())
+}
+
+pub fn read_manifest(
+    dest: &Path,
+) -> Result<Option<ExportManifest>, Box<dyn std::error::Error>> {
+    let path = dest.join("export.manifest.json");
+    if !path.exists() {
+        return Ok(None);
+    }
+    let data = std::fs::read_to_string(path)?;
+    let manifest = serde_json::from_str(&data)?;
+    Ok(Some(manifest))
 }

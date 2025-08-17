@@ -26,6 +26,12 @@ finishes init
 
 finishes sync --dry-run
 # preview export without writing files
+
+finishes config --source /path/to/repo --dest /tmp/out --include rs --include md
+# update saved paths and include extensions
+
+finishes doctor
+# validate configuration and estimate copied files
 ```
 
 Configuration is saved to `~/.config/finishes/config.json` and a `.finishesignore`
