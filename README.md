@@ -1,5 +1,6 @@
 # cinder-file-get
 
+
 `cinder-file-get` retrieves selected files from a GitHub repository to build a lightweight helper pack for LLM tooling.
 
 ## Arch Linux setup
@@ -27,3 +28,7 @@ repo-harvest init example \
 ```
 
 The `codex.sh` script offers dry-run helpers for bootstrap and validation. See [AGENTS.md](AGENTS.md) for detailed concepts and options.
+
+## Development
+Run repository checks with `./codex.sh fast-validate`. Commands default to a dry-run; pass `--confirm` to execute.
+
