@@ -1,17 +1,17 @@
 # Plan
 
 ## Goals
-- Release `finishes` crate version `0.5.0` and move `Unreleased` notes to a dated section.
-- Document `finishes` commands, configuration handling, and manifest features in docs.
+- Add GitHub Actions workflow to build and test the `finishes` crate on `ubuntu-latest` and `macos-latest`.
+- Ensure CI runs `cargo clippy`, `cargo test`, and `cargo dist` packaging.
 
 ## Tests
 - `cargo fmt --all --check`
 - `cargo clippy --manifest-path finishes/Cargo.toml -- -D warnings`
 - `cargo test --manifest-path finishes/Cargo.toml`
-- `cargo build --manifest-path finishes/Cargo.toml --release`
+- `cargo dist build --manifest-path finishes/Cargo.toml`
 
 ## SemVer Impact
-- Minor release: `0.4.2` → `0.5.0` (new features and documentation).
+- Patch release: workflow update only.
 
 ## Rollback Strategy
-- `git revert <commit>` to undo release changes.
+- `git revert <commit>` to restore the previous workflow.
