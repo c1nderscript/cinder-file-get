@@ -23,6 +23,9 @@ cargo build --release
 ```bash
 finishes init
 # follow prompts for repo path, destination, and file types
+
+finishes sync --dry-run
+# preview export without writing files
 ```
 
 Configuration is saved to `~/.config/finishes/config.json` and a `.finishesignore`

@@ -3,14 +3,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-08-17
 ### Added
 - Initial `finishes` crate with logging and CLI skeleton
 - Interactive `finishes init` subcommand with config persistence
   and `.finishesignore` template
+- `finishes sync` subcommand with filtering, copy, and manifest export
 
 ### Changed
 - Bump `repo-harvest` crate version to 0.2.0
-- Bump `finishes` crate version to 0.2.0
+- Bump `finishes` crate version to 0.3.0
 
 ## [0.1.1] - 2025-08-17
 ### Added
