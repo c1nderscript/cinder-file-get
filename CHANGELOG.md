@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.4.1] - 2025-08-17
+### Added
+- Unit tests for path validation, ignore unions, extension filters, and manifest hashing
+- Integration tests ensuring venv/, target/, and node_modules/ directories are excluded
+- Property tests verifying no traversal outside the repository and enforcing the size limit
+
 ## [0.4.0] - 2025-08-17
 ### Added
 - `finishes config` subcommand to display or modify stored values

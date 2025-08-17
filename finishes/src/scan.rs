@@ -55,3 +55,33 @@ fn is_binary(path: &Path) -> Result<bool, std::io::Error> {
     let n = f.read(&mut buf)?;
     Ok(buf[..n].contains(&0))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ignore::gitignore::GitignoreBuilder;
+    use tempfile::tempdir;
+
+    #[test]
+    fn symlink_outside_root_is_ignored() {
+        let root = tempdir().unwrap();
+        let external = tempdir().unwrap();
+        let external_file = external.path().join("ext.md");
+        std::fs::write(&external_file, "hi").unwrap();
+        std::os::unix::fs::symlink(&external_file, root.path().join("link.md")).unwrap();
+        let ignore = GitignoreBuilder::new(root.path()).build().unwrap();
+        let files = scan(root.path(), &ignore).unwrap();
+        assert!(files.is_empty());
+    }
+
+    #[test]
+    fn filters_by_extension() {
+        let root = tempdir().unwrap();
+        std::fs::write(root.path().join("keep.rs"), "").unwrap();
+        std::fs::write(root.path().join("skip.txt"), "").unwrap();
+        let ignore = GitignoreBuilder::new(root.path()).build().unwrap();
+        let files = scan(root.path(), &ignore).unwrap();
+        assert_eq!(files.len(), 1);
+        assert!(files[0].ends_with("keep.rs"));
+    }
+}
