@@ -5,7 +5,7 @@ flowchart TD
     D[codex.sh] --> B
 ```
 
-**Interfaces**: `repo-harvest` CLI, filesystem, GitHub API
+**Interfaces**: `repo-harvest` and `finishes` CLI, filesystem, GitHub API
 **Critical paths**: build (`cargo build`), testing (`cargo test`), release (`codex.sh bootstrap`)
 
 **Interfaces**: [key integration points]

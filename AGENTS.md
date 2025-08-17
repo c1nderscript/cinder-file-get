@@ -1,8 +1,9 @@
 # AGENTS.md — Repo Helper Harvester (Arch • Rust)
 
 **Language:** Rust
- **Binary name (suggested):** `repo-harvest`
- **Purpose:** Obtain all **relevant files** from a chosen GitHub repository to build a **GPT/Claude helper pack** (code + core docs + configs). Runs simply, then **persists its chosen include/exclude paths as a profile** so subsequent runs can **repopulate and sync to the most recent changes** with one command.
+**Binary name (suggested):** `repo-harvest`
+**Additional crate:** `finishes`
+**Purpose:** Obtain all **relevant files** from a chosen GitHub repository to build a **GPT/Claude helper pack** (code + core docs + configs). Runs simply, then **persists its chosen include/exclude paths as a profile** so subsequent runs can **repopulate and sync to the most recent changes** with one command.
 
 ------
 
