@@ -1,0 +1,3 @@
+# Patterns for finishes to ignore
+.git/
+target/

@@ -5,9 +5,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Initial `finishes` crate with logging and CLI skeleton
+- Interactive `finishes init` subcommand with config persistence
+  and `.finishesignore` template
 
 ### Changed
 - Bump `repo-harvest` crate version to 0.2.0
+- Bump `finishes` crate version to 0.2.0
 
 ## [0.1.1] - 2025-08-17
 ### Added
