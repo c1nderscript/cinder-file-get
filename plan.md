@@ -1,10 +1,9 @@
 # Plan
 
 ## Goals
-- Add `finishes sync` subcommand supporting `--dry-run`, `--clean`, and `--force`.
-- Traverse source using `ignore` + `walkdir` with `.gitignore` and `.finishesignore` unioned.
-- Copy allowed files (`.md`, `.mdx`, `.markdown`, `.go`, `.rs`, `.py`) to destination, enforcing 25 MB limit and rejecting unsafe symlinks.
-- Produce `export.manifest.json` containing commit SHA and file hashes.
+- Add `finishes config` subcommand to display or modify stored configuration values (source, destination, includes).
+- Add `finishes doctor` subcommand to validate paths, report ignore rules, count candidate files, and estimate export changes.
+- Bump `finishes` crate version to 0.4.0 and document new commands.
 
 ## Tests
 - `cargo fmt --all --check`
@@ -13,7 +12,7 @@
 - `cargo build --release`
 
 ## SemVer Impact
-- Minor release: 0.2.0 → 0.3.0 (new functionality).
+- Minor release: 0.3.0 → 0.4.0 (new features).
 
 ## Rollback Strategy
-- `git revert <commit>` to remove the sync subcommand and related files.
+- `git revert <commit>` to remove new subcommands and version bump.
