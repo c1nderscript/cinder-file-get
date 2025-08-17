@@ -1,20 +1,17 @@
 # Plan
 
 ## Goals
-- Rewrite `README.md` to document the `finishes` CLI, installation steps, quick start, configuration schema, and ignore rules.
-- Create `CONFIGURATION.md` describing per-OS config file locations.
-- Add `OPERATIONS.md` documenting common tasks, dry-run usage, cleaning, and troubleshooting.
-- Update `AGENTS.md` and `toaster.md` to reference the `finishes` CLI and current architecture overview.
-- Bump crate version to `0.4.2` and record documentation updates in `CHANGELOG.md`.
+- Release `finishes` crate version `0.5.0` and move `Unreleased` notes to a dated section.
+- Document `finishes` commands, configuration handling, and manifest features in docs.
 
 ## Tests
 - `cargo fmt --all --check`
-- `cargo clippy -- -D warnings`
-- `cargo test`
-- `cargo build --release`
+- `cargo clippy --manifest-path finishes/Cargo.toml -- -D warnings`
+- `cargo test --manifest-path finishes/Cargo.toml`
+- `cargo build --manifest-path finishes/Cargo.toml --release`
 
 ## SemVer Impact
-- Patch release: `0.4.1` → `0.4.2` (documentation and metadata only).
+- Minor release: `0.4.2` → `0.5.0` (new features and documentation).
 
 ## Rollback Strategy
-- `git revert <commit>` to undo documentation changes and version bump.
+- `git revert <commit>` to undo release changes.
