@@ -13,7 +13,7 @@ rustup default stable
 ## Build and test
 
 ```bash
-cd repo-harvest
+cd finishes
 cargo test
 cargo build --release
 ```
@@ -21,7 +21,7 @@ cargo build --release
 ## Example usage
 
 ```bash
-repo-harvest init example \
+finishes init example \
   --repo owner/repo \
   --out ~/harvests \
   --include 'src/**' --exclude 'target/**'
