@@ -40,3 +40,23 @@ pub fn copy_and_hash(
     }
     Ok(out)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use tempfile::tempdir;
+
+    #[test]
+    fn hashes_manifest_entries() {
+        let root = tempdir().unwrap();
+        let src = root.path().join("file.md");
+        std::fs::write(&src, b"hello").unwrap();
+        let dest = tempdir().unwrap();
+        let files = copy_and_hash(&[src.clone()], root.path(), dest.path(), true, true).unwrap();
+        assert_eq!(files.len(), 1);
+        let mut hasher = Sha256::new();
+        hasher.update(b"hello");
+        let expected = hex::encode(hasher.finalize());
+        assert_eq!(files[0].sha256, expected);
+    }
+}
