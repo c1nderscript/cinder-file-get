@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - CI workflow to build and test `finishes` on `ubuntu-latest` and `macos-latest` with `cargo clippy`, `cargo test`, and `cargo dist` packaging.
 
+### Fixed
+- `codex.sh` commands now target the `finishes` crate and honor dry-run mode by default.
+
 ## [0.5.0] - 2025-08-17
 ### Added
 - `finishes sync` supports `--clean` to wipe the destination and `--force` to overwrite existing files.
